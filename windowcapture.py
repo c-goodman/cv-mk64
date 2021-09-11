@@ -1,5 +1,7 @@
 import numpy as np
 import win32gui, win32ui, win32con
+from pywinauto import Desktop
+
 
 
 class WindowCapture:
@@ -15,6 +17,7 @@ class WindowCapture:
 
     # constructor
     def __init__(self, window_name):
+       
         # find the handle for the window we want to capture
         self.hwnd = win32gui.FindWindow(None, window_name)
         if not self.hwnd:
@@ -37,7 +40,7 @@ class WindowCapture:
         # images into actual screen positions
         self.offset_x = window_rect[0] + self.cropped_x
         self.offset_y = window_rect[1] + self.cropped_y
-
+    
     def get_screenshot(self):
 
         # get the window image data
@@ -74,6 +77,23 @@ class WindowCapture:
         img = np.ascontiguousarray(img)
 
         return img
+
+    # find the name of the emulator window
+    # gets called in main.py and run through WindowCapture class
+    @staticmethod
+    def get_emu_name():
+        windows = Desktop(backend="uia").windows()
+        lists = [w.window_text() for w in windows]
+        narrow = [s for s in lists if s.startswith('Dolphin 5.0 | JIT64 SC')]
+        return narrow[0]
+
+    # pull the name of Dolphin NetPlay window
+    @staticmethod
+    def get_netplay_name():
+        indows = Desktop(backend="uia").windows()
+        ists = [w.window_text() for w in indows]
+        arrow = [s for s in ists if s.startswith('Dolphin NetPlay')]
+        return arrow[0]
 
     # find the name of the window you're interested in.
     # once you have it, update window_capture()

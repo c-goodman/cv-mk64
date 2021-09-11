@@ -10,12 +10,9 @@ import win32gui, win32ui, win32con
 # Doing this because I'll be putting the files from each video in their own folder on GitHub
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-# Uncomment to list window names
-# WindowCapture.list_window_names()
-# exit()
-
 # initialize the WindowCapture class
-wincap = WindowCapture("Dolphin NetPlay")
+emu_name = WindowCapture.get_emu_name()
+wincap = WindowCapture(emu_name)
 
 loop_time = time()
 while(True):

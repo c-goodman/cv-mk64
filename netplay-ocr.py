@@ -6,14 +6,21 @@ from windowcapture import WindowCapture
 import win32gui, win32ui, win32con
 import easyocr
 import pandas as pd
+from pywinauto import Desktop
 
+# simple_output_testing = ['cooper[1]', '5,0 Win | 1---', 'Oms', 'connor[2]', '5,0 Win |-2-----', '8ms',
+#  'cole[3]', '5.0 Win | -3---', '19ms', 'Ping:', 'Ping:', 'Ping:']
 
 # # Change the working directory to the folder this script is in.
 # # Doing this because I'll be putting the files from each video in their own folder on GitHub
 # os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+# Initialize easyocr
 reader = easyocr.Reader(lang_list=['en'])
-wincap = WindowCapture("Dolphin NetPlay")
+
+# Initialize WindowCapture class with get_netplay_name function
+netplay_name = WindowCapture.get_netplay_name()
+wincap = WindowCapture(netplay_name)
 screenshot = wincap.get_screenshot()
 
 # Crop position if hosting
@@ -22,10 +29,6 @@ crop_img = screenshot[88:497, 455:739]
 # crop_img = screenshot[44:497, 455:739]
 simple_output = reader.readtext(crop_img, detail=0, mag_ratio=2)
         
-
-# simple_output_testing = ['cooper[1]', '5,0 Win | 1---', 'Oms', 'connor[2]', '5,0 Win |-2-----', '8ms',
-#  'cole[3]', '5.0 Win | -3---', '19ms', 'Ping:', 'Ping:', 'Ping:']
-
 # Remove items from list that end in 'ms'
 no_endswith_ms = [s for s in simple_output if not s.endswith('ms')]
 # Remove items from list that end in 'ing:'

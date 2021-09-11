@@ -1,5 +1,5 @@
 # cv-mk64
-This project uses a combination of Computer Vision ([OpenCV-Python](https://docs.opencv.org/master/d6/d00/tutorial_py_root.html)) and Optical Character Recognition [EasyOCR](https://github.com/JaidedAI/EasyOCR) to automatically scrape information from Mario Kart 64 playing on a [Dolphin Emulator](https://dolphin-emu.org/).
+This project uses a combination of Computer Vision ([OpenCV-Python](https://docs.opencv.org/master/d6/d00/tutorial_py_root.html)) and Optical Character Recognition ([EasyOCR](https://github.com/JaidedAI/EasyOCR)) to automatically scrape information from Mario Kart 64 playing on a [Dolphin Emulator](https://dolphin-emu.org/).
 
 **GOAL:** Populate either a locally hosted Pandas DataFrame or MongoDB server with scraped information to track player performance statistics. 
 

@@ -24,19 +24,26 @@ wincap = WindowCapture(netplay_name)
 screenshot = wincap.get_screenshot()
 
 # Crop position if hosting
-crop_img = screenshot[88:497, 455:739]
+# crop_img = screenshot[88:497, 455:739]
 # Crop position if not hosting
-# crop_img = screenshot[44:497, 455:739]
+crop_img = screenshot[55:497, 455:739]
 simple_output = reader.readtext(crop_img, detail=0, mag_ratio=2)
+
+print(simple_output)
         
 # Remove items from list that end in 'ms'
 no_endswith_ms = [s for s in simple_output if not s.endswith('ms')]
 # Remove items from list that end in 'ing:'
-no_endswith_ing = [s for s in no_endswith_ms if not s.endswith('ing:')]
+no_endswith_ing = [s for s in no_endswith_ms if not s.startswith('Ping:')]
+
+print(no_endswith_ing)
 
 # Divide into two lists based on .startswith method
 ports = [s for s in no_endswith_ing if s.startswith('5')]
 players = [s for s in no_endswith_ing if not s.startswith('5')]
+
+print(len(players))
+print(len(ports))
 
 # Create dictionary of new lists
 diction = {'Players':players, 'Ports':ports}
@@ -45,7 +52,7 @@ diction = {'Players':players, 'Ports':ports}
 df = pd.DataFrame(diction)
 
 # Use .strip method to remove clutter
-df['Players'] = df['Players'].str.strip('[]12345678')
-df['Ports'] = df['Ports'].str.strip('5,.0 |-Win')
+df['Players'] = df['Players'].str.strip('[]12345678 I')
+df['Ports'] = df['Ports'].str.strip('5,.0 |-=Win')
 
 print(df)

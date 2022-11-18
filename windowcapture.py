@@ -84,16 +84,16 @@ class WindowCapture:
     def get_emu_name():
         windows = Desktop(backend="uia").windows()
         lists = [w.window_text() for w in windows]
-        narrow = [s for s in lists if s.startswith('Dolphin 5.0 | JIT64 SC')]
-        return narrow[0]
+        emu_window = [s for s in lists if s.startswith('Dolphin 5.0 | JIT64 SC')]
+        return emu_window[0]
 
     # pull the name of Dolphin NetPlay window
     @staticmethod
     def get_netplay_name():
-        indows = Desktop(backend="uia").windows()
-        ists = [w.window_text() for w in indows]
-        arrow = [s for s in ists if s.startswith('Dolphin NetPlay')]
-        return arrow[0]
+        windows = Desktop(backend="uia").windows()
+        lists = [w.window_text() for w in windows]
+        netplay_window = [s for s in lists if s.startswith('Dolphin NetPlay')]
+        return netplay_window[0]
 
     # find the name of the window you're interested in.
     # once you have it, update window_capture()

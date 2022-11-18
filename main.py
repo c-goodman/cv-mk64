@@ -4,7 +4,8 @@ import numpy as np
 import os
 from time import time
 from windowcapture import WindowCapture
-import win32gui, win32ui, win32con
+# import win32gui, win32ui, win32con
+from pywinauto import Desktop
 
 # Change the working directory to the folder this script is in.
 # Doing this because I'll be putting the files from each video in their own folder on GitHub

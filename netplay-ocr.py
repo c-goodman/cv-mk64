@@ -1,9 +1,8 @@
-from logging import StringTemplateStyle
 import cv2 as cv
 import numpy as np
 import os
 from windowcapture import WindowCapture
-import win32gui, win32ui, win32con
+# import win32gui, win32ui, win32con
 import easyocr
 import pandas as pd
 from pywinauto import Desktop

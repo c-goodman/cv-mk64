@@ -3,7 +3,6 @@ import win32gui, win32ui, win32con
 from pywinauto import Desktop
 
 
-
 class WindowCapture:
 
     # properties
@@ -84,7 +83,7 @@ class WindowCapture:
     def get_emu_name():
         windows = Desktop(backend="uia").windows()
         lists = [w.window_text() for w in windows]
-        emu_window = [s for s in lists if s.startswith('Dolphin 5.0 | JIT64 SC')]
+        emu_window = [s for s in lists if s.startswith('Dolphin 5.0')]
         return emu_window[0]
 
     # pull the name of Dolphin NetPlay window
@@ -92,7 +91,7 @@ class WindowCapture:
     def get_netplay_name():
         windows = Desktop(backend="uia").windows()
         lists = [w.window_text() for w in windows]
-        netplay_window = [s for s in lists if s.startswith('Dolphin NetPlay')]
+        netplay_window = [s for s in lists if 'NetPlay' in s]
         return netplay_window[0]
 
     # find the name of the window you're interested in.

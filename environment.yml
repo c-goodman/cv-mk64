@@ -1,0 +1,23 @@
+name: mkcode
+channels:
+  - defaults
+dependencies:
+  - python=3.10.4
+  - websockets
+  - websocket-client
+  - numpy
+  - pandas
+  - pywin32
+  - pywinauto
+  - opencv
+  - imageio
+  - scipy
+  - cudatoolkit=11.3
+  - torchvision
+  - pytorch
+  - torchaudio
+  - pyautogui
+  - ipykernel
+  - black
+  - pyperclip
+prefix: C:\Users\Cooper\anaconda3\envs\mkcode
